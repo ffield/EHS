@@ -1,3 +1,4 @@
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,14 +8,17 @@ import java.util.Map;
 public class Job {
 	String jobName;
 	Map<String,Double> jobRates;
-	String[] jobWorkTypes;
+	Collection<String> jobWorkTypes;
 	
-	public Job(String[] types) {
+	public Job(String name) {
 		this.jobRates = new HashMap<String,Double>();
-		this.jobWorkTypes = types;
 	}
 	
 	public void addRate(String type, Double amount) {
 		this.jobRates.put(type, amount);
+	}
+	
+	public void addWorkType(String work) {
+		this.jobWorkTypes.add(work);
 	}
 }
