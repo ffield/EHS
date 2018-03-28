@@ -14,14 +14,44 @@ public class Payroll {
 	
 	public void printOutput(){
 		for (Employee e: employees) {
-			System.out.println(e.getFullName());
+			System.out.println("EMPLOYEE: " + e.getFullName());
+			Double totalHours = 0.0;
 			for (Job j : e.jobsWorkedByEmployee) {
 				if (e.getRoles(j)!=null) {
 					for (Role r : e.getRoles(j)) {
-						System.out.println(r.hoursWorked + " hours worked at job " + r.trackingId + " as" + r.name);
+						if (!r.trackingId.equals("LUNCH") && !r.trackingId.equals("Lunch-LUNCH")) {
+						totalHours += r.hoursWorked;
+						System.out.println(r.hoursWorked + " hours worked at job " + j.jobName + " doing task " + r.trackingId + " as " + r.laborTypeName);
+						System.out.println("Prevailing wage for this role and job is " + calculatePrevailingWage(e,j,r));
+						}
 					}
+					
 				}
 			}
+			System.out.println("TOTAL HOURS: " + totalHours);
 		}
+//		for (Employee e: employees) {
+//			calculatePrevailingWage(e);
+//		}
 	}
-}
+	
+	public Double calculatePrevailingWage( Employee employee, Job job, Role role ) {
+//		System.out.println("Employee: " + employee.getFullName());
+//		Collection<Job> jobsWorked = employee.getJobsWorkedByEmployee();
+//		System.out.println("Jobs Worked: " + jobsWorked.size());
+//		for (Job job : jobsWorked) {
+			System.out.println("Job: " + job.jobName);
+//			Collection<Role> rolesPerformed = employee.getRoles(job);
+//			for (Role role: rolesPerformed) {
+			Double hoursWorked = role.getHoursWorked();
+			Double rateForRole = job.getRate(role.getLaborTypeName());
+			Double healthInsuranceAddition = employee.getHealthInsuranceAddition();
+			Double dentalInsuranceAddition = employee.getDentalInsuranceAddition();
+			Double vacationAddition = employee.getVacationAddition();
+			Double holidayAddition = employee.getHolidayAddition();
+			Double match401K = employee.get401kMatch(job, role.getLaborTypeName());
+			Double prevailingWage = rateForRole + healthInsuranceAddition + dentalInsuranceAddition + vacationAddition + holidayAddition + match401K;
+			return prevailingWage;
+			}
+	}
+	

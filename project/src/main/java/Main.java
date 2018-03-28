@@ -10,19 +10,25 @@ import java.util.Set;
 
 import com.opencsv.CSVReader;
 
+import Repositories.JobRepository;
+
 //Francis Field
 
 public class Main {
 	
 	public static void main(String[] args) {
 		
-        String csvFile = "src/main/resources/test1.csv";
+		
+		JobRepository jobInfo = new JobRepository("src/main/resources/jobs.csv");
+		
+		
+		
+        String csvFile = "src/main/resources/test2.csv";
 
         CSVReader reader = null;
         try {
         	//Initialiing CSV Reader
             reader = new CSVReader(new FileReader(csvFile));
-            
             //INitializing variables to find columns
             ArrayList<Integer> indices = new ArrayList<Integer>();
             Set<String> values = new HashSet<String>();
@@ -47,18 +53,18 @@ public class Main {
             	if (!collectedEmployees.contains(fullname)){
 	            	collectedEmployees.add(fullname);
 	            	Employee e = new Employee(line[dictionary.get("Employee First Name")],line[dictionary.get("Employee Last Name")]);
-	            	payroll.add(e);
 	            	if (!line[dictionary.get("Total Hours")].equals("0")) {
 		            		Job job = new Job(line[dictionary.get("Job Number")]);
+		            		job.addRate(line[dictionary.get("Labor Type Name")], jobInfo.getInfo(line[dictionary.get("Job Number")]).getWage(line[dictionary.get("Labor Type Name")]));
 		            		e.addJob(job);
 		            		Role r = new Role(line[dictionary.get("Labor Type Name")], Double.valueOf(line[dictionary.get("Regular Hours")]),line[dictionary.get("Tracking ID")]);
 		            		ArrayList<Role> arrayOfRoles = new ArrayList<Role>();
 		            		arrayOfRoles.add(r);
 		            		e.logRole(job,arrayOfRoles);
 	            		}
+	            	payroll.add(e);
 	            	}
             	else {
-            		System.out.println("Found repeat employee");
             		//get employee from payroll
             		Employee e = null;
             		for ( Employee employee: payroll) {
@@ -70,6 +76,7 @@ public class Main {
                 	if (!line[dictionary.get("Total Hours")].equals("0")) {
                 		if (!e.jobPresent(line[dictionary.get("Job Number")])) {
                 			Job job = new Job(line[dictionary.get("Job Number")]);
+                			job.addRate(line[dictionary.get("Labor Type Name")], jobInfo.getInfo(line[dictionary.get("Job Number")]).getWage(line[dictionary.get("Labor Type Name")]));
                     		e.addJob(job);
                     		Role r = new Role(line[dictionary.get("Labor Type Name")], Double.valueOf(line[dictionary.get("Regular Hours")]),line[dictionary.get("Tracking ID")]);
                     		ArrayList<Role> arrayOfRoles = new ArrayList<Role>();
@@ -85,6 +92,7 @@ public class Main {
                 				}
                 			}
                 			Role r = new Role(line[dictionary.get("Labor Type Name")], Double.valueOf(line[dictionary.get("Regular Hours")]),line[dictionary.get("Tracking ID")]);
+                			jobAlreadyWorked.addRate(line[dictionary.get("Labor Type Name")], jobInfo.getInfo(line[dictionary.get("Job Number")]).getWage(line[dictionary.get("Labor Type Name")]));
                 			Collection<Role> rolesWorkedByEmployee = e.getRoles(jobAlreadyWorked);
                 			rolesWorkedByEmployee.add(r);
                 		}

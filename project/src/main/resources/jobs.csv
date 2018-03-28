@@ -1,0 +1,13 @@
+Job,Role,Wage
+16006,Laborer,22
+16006,Foreman,27.5
+16006,Excavator Operator,33.5
+16006,Base Rate,22
+SHOP,Laborer,15
+SHOP,Foreman,25
+SHOP,Excavator Operator ,33.5
+SHOP,Base Rate,15
+LUNCH,Laborer,0
+LUNCH,Foreman,0
+LUNCH,Excavator Operator ,0
+LUNCH,Base Rate,0
