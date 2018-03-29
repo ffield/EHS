@@ -119,7 +119,7 @@ public class Parser {
         	}
         }
     Payroll finalPayroll = new Payroll(payroll);
-    finalPayroll.printOutput();
+    finalPayroll.generateOutput();
 
     } catch (IOException e) {
         e.printStackTrace();
