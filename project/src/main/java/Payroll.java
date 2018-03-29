@@ -30,20 +30,10 @@ public class Payroll {
 			}
 			System.out.println("TOTAL HOURS: " + totalHours);
 		}
-//		for (Employee e: employees) {
-//			calculatePrevailingWage(e);
-//		}
 	}
 	
 	public Double calculatePrevailingWage( Employee employee, Job job, Role role ) {
-//		System.out.println("Employee: " + employee.getFullName());
-//		Collection<Job> jobsWorked = employee.getJobsWorkedByEmployee();
-//		System.out.println("Jobs Worked: " + jobsWorked.size());
-//		for (Job job : jobsWorked) {
 			System.out.println("Job: " + job.jobName);
-//			Collection<Role> rolesPerformed = employee.getRoles(job);
-//			for (Role role: rolesPerformed) {
-			Double hoursWorked = role.getHoursWorked();
 			Double rateForRole = job.getRate(role.getLaborTypeName());
 			Double healthInsuranceAddition = employee.getHealthInsuranceAddition();
 			Double dentalInsuranceAddition = employee.getDentalInsuranceAddition();
