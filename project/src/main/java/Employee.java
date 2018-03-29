@@ -11,7 +11,7 @@ public class Employee {
 	String lastName;
 	Collection<Job> jobsWorkedByEmployee;
 	Map<Job,Collection<Role>> rolesPerformedByEmployee = new HashMap<Job,Collection<Role>>();
-	Map<String,Day> hours = new HashMap<String, Day>();
+	//Map<String,Day> hours = new HashMap<String, Day>();
 	Integer hoursWorked = 40;
 	Double percentage401k = .04;
 	Double medicalInsuranceCost = 100.0;

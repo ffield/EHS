@@ -23,6 +23,8 @@ public class Payroll {
 						totalHours += r.hoursWorked;
 						System.out.println(r.hoursWorked + " hours worked at job " + j.jobName + " doing task " + r.trackingId + " as " + r.laborTypeName);
 						System.out.println("Prevailing wage for this role and job is " + calculatePrevailingWage(e,j,r));
+						System.out.println("DOW: " + r.getDayOfWeek());
+						
 						}
 					}
 					

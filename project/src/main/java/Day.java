@@ -1,3 +1,7 @@
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 //Francis Field
 
 
@@ -8,12 +12,14 @@ public class Day {
 	Double dayHours;
 	Double nightHours;
 	Double totalHours;
+	Map<Job,Collection<Role>> rolesPerformedByEmployee;
 	
-	public Day(String fn) {
+	public Day(String fn, Map<Job,Collection<Role>> roles) {
 		this.fullName = fn;
 		this.dayHours = 0.0;
 		this.nightHours = 0.0;
 		this.totalHours = 0.0;
+		this.rolesPerformedByEmployee = roles;
 	}
 	
 	public void addDayHours(Double hours) {

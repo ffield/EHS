@@ -1,5 +1,9 @@
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Time;
+import java.time.Duration;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -63,6 +67,7 @@ public class Parser {
 	            		e.addJob(job);
 	            		Role r = new Role(line[dictionary.get("Labor Type Name")], Double.valueOf(line[dictionary.get("Regular Hours")]),line[dictionary.get("Tracking ID")]);
 	            		ArrayList<Role> arrayOfRoles = new ArrayList<Role>();
+	            		initializeRole(line,r,dictionary);
 	            		arrayOfRoles.add(r);
 	            		e.logRole(job,arrayOfRoles);
             		}
@@ -90,6 +95,7 @@ public class Parser {
                 		e.addJob(job);
                 		Role r = new Role(line[dictionary.get("Labor Type Name")], Double.valueOf(line[dictionary.get("Regular Hours")]),line[dictionary.get("Tracking ID")]);
                 		ArrayList<Role> arrayOfRoles = new ArrayList<Role>();
+                		initializeRole(line,r,dictionary);
                 		arrayOfRoles.add(r);
                 		e.logRole(job,arrayOfRoles);
             		}
@@ -102,6 +108,7 @@ public class Parser {
             				}
             			}
             			Role r = new Role(line[dictionary.get("Labor Type Name")], Double.valueOf(line[dictionary.get("Regular Hours")]),line[dictionary.get("Tracking ID")]);
+            			initializeRole(line,r,dictionary);
             			jobAlreadyWorked.addRate(line[dictionary.get("Labor Type Name")], jobInfo.getInfo(line[dictionary.get("Job Number")]).getWage(line[dictionary.get("Labor Type Name")]));
             			Collection<Role> rolesWorkedByEmployee = e.getRoles(jobAlreadyWorked);
             			rolesWorkedByEmployee.add(r);
@@ -118,6 +125,29 @@ public class Parser {
         e.printStackTrace();
     }
     
+	}
+	
+	//Helper function to parse the line and figure out split of day v night hours
+	public void initializeRole(String[] line, Role r, Map<String, Integer> dictionary) {
+		r.setDayOfWeek(line[dictionary.get("Day of the Week")]);
+		String startTime = line[dictionary.get("Start Time")];
+		r.setStartTime(startTime);
+		String stopTime = line[dictionary.get("Stop Time")];
+		r.setStopTime(stopTime);
+		System.out.println(startTime);
+		System.out.println(stopTime);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
+		LocalTime startTimeObject = LocalTime.parse(startTime, formatter);
+		LocalTime stopTimeObject = LocalTime.parse(stopTime, formatter);
+		LocalTime nightHours = LocalTime.parse("7:00 PM", formatter);
+		if (stopTimeObject.isAfter(nightHours)) {
+			r.setNightHours((double) Duration.between(stopTimeObject,nightHours).toHours());
+			r.setDayHours( (double) Duration.between(startTimeObject,nightHours).toHours() );
+		}
+		else {
+			r.setNightHours(0.0);
+			r.setDayHours( (double) Duration.between(startTimeObject,stopTimeObject).toHours());
+		}
 	}
 	
 }
