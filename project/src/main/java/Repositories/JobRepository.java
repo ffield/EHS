@@ -37,15 +37,15 @@ public class JobRepository {
         	//iterate through rest, collecting info
             while ((line = reader.readNext()) != null) {
             	if (!jobs.containsKey(line[dictionary.get("Job")])) {
-            		System.out.println("Logging job " + line[dictionary.get("Job")] + " with role " + line[dictionary.get("Role")]);
+            		//System.out.println("Logging job " + line[dictionary.get("Job")] + " with role " + line[dictionary.get("Role")]);
             		jobs.put(line[dictionary.get("Job")], new JobInfo(line[dictionary.get("Job")]));
             		jobs.get(line[dictionary.get("Job")]).addWage(line[dictionary.get("Role")], Double.valueOf(line[dictionary.get("Wage")]));
-            		System.out.println("Logged Role " + line[dictionary.get("Role")] + " with wage " + jobs.get(line[dictionary.get("Job")]).getWage(line[dictionary.get("Role")]) );
+            		//System.out.println("Logged Role " + line[dictionary.get("Role")] + " with wage " + jobs.get(line[dictionary.get("Job")]).getWage(line[dictionary.get("Role")]) );
             	}
             	else {
             		//System.out.println(");
             		jobs.get(line[dictionary.get("Job")]).addWage(line[dictionary.get("Role")], Double.valueOf(line[dictionary.get("Wage")]));
-            		System.out.println("Logged Role " + line[dictionary.get("Role")] + " with wage " + jobs.get(line[dictionary.get("Job")]).getWage(line[dictionary.get("Role")]) );
+            		//.out.println("Logged Role " + line[dictionary.get("Role")] + " with wage " + jobs.get(line[dictionary.get("Job")]).getWage(line[dictionary.get("Role")]) );
             	}
             }
             	

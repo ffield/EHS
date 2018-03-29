@@ -10,6 +10,8 @@ import java.util.Set;
 
 import com.opencsv.CSVReader;
 
+import Repositories.EmployeeInfo;
+import Repositories.EmployeeRepository;
 import Repositories.JobRepository;
 
 //Francis Field
@@ -20,7 +22,7 @@ public class Main {
 		
 		
 		JobRepository jobInfo = new JobRepository("src/main/resources/jobs.csv");
-		
+		EmployeeRepository employeeInfo = new EmployeeRepository("src/main/resources/employees.csv");
 		
 		
         String csvFile = "src/main/resources/test2.csv";
@@ -62,6 +64,12 @@ public class Main {
 		            		arrayOfRoles.add(r);
 		            		e.logRole(job,arrayOfRoles);
 	            		}
+	            	EmployeeInfo ei = employeeInfo.getInfo(e.getFullName());
+	            	e.basePayRate = ei.getBaseRate();
+	            	e.dentalInsuranceCost = ei.getDentalInsurance();
+	            	e.medicalInsuranceCost = ei.getMedicalInsurance();
+	            	e.percentage401k = ei.getMatch401k();
+	            	e.yearsWorked = ei.getYearsWorked();
 	            	payroll.add(e);
 	            	}
             	else {
