@@ -31,7 +31,6 @@ public class Payroll {
 						System.out.println(r.hoursWorked + " hours worked at job " + j.jobName + " doing task " + r.trackingId + " as " + r.laborTypeName);
 						System.out.println("Prevailing wage for this role and job is " + calculatePrevailingWage(e,j,r));
 						System.out.println("DOW: " + r.getDayOfWeek());
-						
 						}
 					}
 					
@@ -55,23 +54,15 @@ public class Payroll {
 	
 
 	public void generateOutput() throws IOException {
-//	            Writer writer = Files.newBufferedWriter(Paths.get("../out.csv"));
-//
-//	            CSVWriter csvWriter = new CSVWriter(writer,
-//	                    CSVWriter.DEFAULT_SEPARATOR,
-//	                    CSVWriter.NO_QUOTE_CHARACTER,
-//	                    CSVWriter.DEFAULT_ESCAPE_CHARACTER,
-//	                    CSVWriter.DEFAULT_LINE_END);
+	            CSVWriter csvWriter = new CSVWriter(new FileWriter("output.csv"));
 	            
-	            CSVWriter csvWriter = new CSVWriter(new FileWriter("data.csv"));
-	            
-	            String[] headerRecord = {"Name", "Day", "Job", "Tracking ID", "Labor Type", "Rate", "Prevailing Wage",
+	            String[] headerRecord = {"First Name","Last Name", "Day", "Job", "Tracking ID", "Labor Type", "Rate", "Prevailing Wage",
 	            		"Start Time","Stop Time","Hours Worked","Night Hours","Day Hours"};
 	            csvWriter.writeNext(headerRecord);
 	            
 	            for (Employee e: employees) {
-	    			String name = e.getFullName();
-//	    			Double totalHours = 0.0;
+	    			String firstName = e.getFirstName();
+	    			String lastName = e.getLastName();
 	    			for (Job j : e.jobsWorkedByEmployee) {
 	    				if (e.getRoles(j)!=null) {
 	    					for (Role r : e.getRoles(j)) {
@@ -87,7 +78,7 @@ public class Payroll {
 	    							Double hours = r.getHoursWorked();
 	    							Double nightHours = r.getNightHours();
 	    							Double dayHours = r.getDayHours();
-	    							String[] record = {name,day,job,trackingId,laborType,String.valueOf(rate),String.valueOf(prevailingWage),
+	    							String[] record = {firstName, lastName ,day,job,trackingId,laborType,String.valueOf(rate),String.valueOf(prevailingWage),
 	    									startTime,stopTime,String.valueOf(hours),String.valueOf(nightHours),String.valueOf(dayHours)};
 	    							csvWriter.writeNext(record);
 	    							}

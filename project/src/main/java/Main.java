@@ -10,6 +10,7 @@ import java.util.Set;
 
 import com.opencsv.CSVReader;
 
+import Repositories.ComputerEaseRepository;
 import Repositories.EmployeeInfo;
 import Repositories.EmployeeRepository;
 import Repositories.JobRepository;
@@ -23,6 +24,7 @@ public class Main {
 		
 		JobRepository jobInfo = new JobRepository("src/main/resources/jobs.csv");
 		EmployeeRepository employeeInfo = new EmployeeRepository("src/main/resources/employees.csv");
+		ComputerEaseRepository computerEaseInfo = new ComputerEaseRepository("src/main/resources/computereaseClassCodes.csv","src/main/resources/computereaseIDS.csv");
         String csvFile = "src/main/resources/test2.csv";
         Parser importParser = new Parser(jobInfo, employeeInfo, csvFile);
 		importParser.initializeData();

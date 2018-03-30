@@ -147,6 +147,7 @@ public class Parser {
 		else {
 			r.setNightHours(0.0);
 			r.setDayHours( (double) Duration.between(startTimeObject,stopTimeObject).toHours());
+			r.setDayHours(r.getHoursWorked());
 		}
 	}
 	
