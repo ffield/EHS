@@ -48,6 +48,7 @@ public class Payroll {
 			Double vacationAddition = employee.getVacationAddition();
 			Double holidayAddition = employee.getHolidayAddition();
 			Double match401K = employee.get401kMatch(job, role.getLaborTypeName());
+			System.out.println("Rate: " + rateForRole);
 			Double prevailingWage = rateForRole + healthInsuranceAddition + dentalInsuranceAddition + vacationAddition + holidayAddition + match401K;
 			return prevailingWage;
 			}
@@ -56,7 +57,7 @@ public class Payroll {
 	public void generateOutput() throws IOException {
 	            CSVWriter csvWriter = new CSVWriter(new FileWriter("output.csv"));
 	            
-	            String[] headerRecord = {"First Name","Last Name", "Day", "Job", "Tracking ID", "Labor Type", "Rate", "Prevailing Wage",
+	            String[] headerRecord = {"First Name","Last Name","ID", "Day", "Job", "Tracking ID", "Labor Type","Class Code", "Rate", "Prevailing Wage",
 	            		"Start Time","Stop Time","Hours Worked","Night Hours","Day Hours"};
 	            csvWriter.writeNext(headerRecord);
 	            
@@ -78,7 +79,7 @@ public class Payroll {
 	    							Double hours = r.getHoursWorked();
 	    							Double nightHours = r.getNightHours();
 	    							Double dayHours = r.getDayHours();
-	    							String[] record = {firstName, lastName ,day,job,trackingId,laborType,String.valueOf(rate),String.valueOf(prevailingWage),
+	    							String[] record = {firstName, lastName,e.getComputerEaseID(),day,job,trackingId,laborType,r.getComputerEaseLaborClassCode(),String.valueOf(rate),String.valueOf(prevailingWage),
 	    									startTime,stopTime,String.valueOf(hours),String.valueOf(nightHours),String.valueOf(dayHours)};
 	    							csvWriter.writeNext(record);
 	    							}

@@ -2,12 +2,34 @@ Job,Role,Wage
 16006,Laborer,19.51
 16006,Foreman,27.5
 16006,Excavator Operator,33.5
+16006,Operator,52
+16006,Carpenter,30
 16006,Base Rate,22
 SHOP,Laborer,15
 SHOP,Foreman,25
 SHOP,Excavator Operator ,33.5
+SHOP,Carpenter,30
 SHOP,Base Rate,15
 LUNCH,Laborer,0
 LUNCH,Foreman,0
 LUNCH,Excavator Operator ,0
+LUNCH,Carpenter,0
 LUNCH,Base Rate,0
+16002,Laborer,19.51
+16002,Foreman,27.5
+16002,Excavator Operator,33.5
+16002,Operator,52
+16002,Carpenter,30
+16002,Base Rate,22
+16001,Laborer,19.51
+16001,Foreman,27.5
+16001,Operator,52
+16001,Excavator Operator,33.5
+16001,Carpenter,50
+16001,Base Rate,22
+17004,Laborer,19.51
+17004,Foreman,27.5
+17004,Excavator Operator,33.5
+17004,Base Rate,22
+17004,Operator,52
+17004,Carpenter,30

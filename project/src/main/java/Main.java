@@ -25,8 +25,8 @@ public class Main {
 		JobRepository jobInfo = new JobRepository("src/main/resources/jobs.csv");
 		EmployeeRepository employeeInfo = new EmployeeRepository("src/main/resources/employees.csv");
 		ComputerEaseRepository computerEaseInfo = new ComputerEaseRepository("src/main/resources/computereaseClassCodes.csv","src/main/resources/computereaseIDS.csv");
-        String csvFile = "src/main/resources/test2.csv";
-        Parser importParser = new Parser(jobInfo, employeeInfo, csvFile);
+        String csvFile = "src/main/resources/test3.csv";
+        Parser importParser = new Parser(jobInfo, employeeInfo,computerEaseInfo, csvFile);
 		importParser.initializeData();
 		
 		

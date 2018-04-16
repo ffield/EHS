@@ -4,6 +4,7 @@
 //contains day of week as well as night hours vs day hours
 public class Role {
 	String laborTypeName;
+	String computerEaseLaborClassCode;
 	Double hoursWorked;
 	String trackingId;
 	String dayOfWeek;
@@ -65,6 +66,14 @@ public class Role {
 
 	public void setStopTime(String stopTime) {
 		this.stopTime = stopTime;
+	}
+
+	public String getComputerEaseLaborClassCode() {
+		return computerEaseLaborClassCode;
+	}
+
+	public void setComputerEaseLaborClassCode(String computerEaseLaborClassCode) {
+		this.computerEaseLaborClassCode = computerEaseLaborClassCode;
 	}
 
 }

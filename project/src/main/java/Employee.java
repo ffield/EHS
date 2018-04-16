@@ -9,6 +9,7 @@ import java.util.Map;
 public class Employee {
 	String firstName;
 	String lastName;
+	String computerEaseID;
 	Collection<Job> jobsWorkedByEmployee;
 	Map<Job,Collection<Role>> rolesPerformedByEmployee = new HashMap<Job,Collection<Role>>();
 	//Map<String,Day> hours = new HashMap<String, Day>();
@@ -132,6 +133,14 @@ public class Employee {
 
 	public void setHoursWorked(Integer hoursWorked) {
 		this.hoursWorked = hoursWorked;
+	}
+
+	public String getComputerEaseID() {
+		return computerEaseID;
+	}
+
+	public void setComputerEaseID(String computerEaseID) {
+		this.computerEaseID = computerEaseID;
 	}
 
 	public Double getPercentage401k() {

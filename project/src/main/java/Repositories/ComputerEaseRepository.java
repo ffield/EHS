@@ -48,7 +48,7 @@ public class ComputerEaseRepository {
             }
             
             while ((employeeLine = employeeCodeReader.readNext()) != null) {
-            	String fullName = employeeLine[employeeCodeDictionary.get("First Name")] + employeeLine[employeeCodeDictionary.get("Last Name")];
+            	String fullName = employeeLine[employeeCodeDictionary.get("First Name")] + " " + employeeLine[employeeCodeDictionary.get("Last Name")];
             	computerEaseEmployeeCodes.put(fullName,new EmployeeCodeRecord(employeeLine[employeeCodeDictionary.get("First Name")],employeeLine[employeeCodeDictionary.get("Last Name")],employeeLine[employeeCodeDictionary.get("ID")]));
             }
             	
